@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="common.css">
+<style>
+     #container
+     {display:flex;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+  #container>div{
+      margin: auto;
+      width: 22%;
+      border-radius: 10px;
+      border: 2px solid brown;
+      margin-top: 20px;
+      box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+  }
+  div>img:first-of-type{
+      width: 100%;
+      height: 250px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+  }
+    p+img {
+        height:40px;
+        
+    }
+    .l1 {
+    margin-top: 5px;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight:600;
+    text-align: center;
+}
+.l2{
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+    font-family: sans-serif;
+    margin-top: -15px;
+}
+</style>
+<body>
+    <div id="navbar">
+        <div><a href="backend.html"><h2>Backend</h2></a></div>
+        <div><a href="frontend.html"><h2>Frontend</h2></a></div>
+    </div>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    var investorarr=JSON.parse(localStorage.getItem("investorsdata"))
+    investorarr.forEach(function(ele){
+    var box=document.createElement("div");
+    
+
+    var investorpict=document.createElement("img")
+    investorpict.setAttribute("src",ele.invurl)
+    investorpict.style.borderTopLeftRadius="10px";
+    investorpict.style.borderTopRightRadius="10px";
+    
+    var investorname=document.createElement("h3")
+    investorname.setAttribute("class","l1")
+    investorname.innerText=ele.invname;
+    
+    var role=document.createElement("p")
+    role.setAttribute("class","l2")
+    role.innerText=ele.invrole;
+    
+    var logo=document.createElement("img")
+    logo.setAttribute("src",ele.invclogo)
+
+    box.append(investorpict,investorname,role,logo)
+    document.querySelector("#container").append(box);
+})
+
+</script>

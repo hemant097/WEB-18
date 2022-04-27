@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        input {
+            padding: 10px;
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="common.css">
+<body>
+    <div id="navbar">
+        <div><a href="backend.html"><h2>Backend</h2></a></div>
+        <div><a href="frontend.html"><h2>Frontend</h2></a></div>
+    </div>
+    <h1>Backend</h1>
+    <form id="invform">
+        <input id="url" type="text" placeholder="enter image url"/>
+        <input id="name" type="text" placeholder="enter investor name"/>
+        <input id="role" type="text" placeholder="enter investor role"/>
+        <input id="logo" type="text" placeholder="enter logo url"/>
+        <input type="submit"/>
+    </form>
+</body>
+</html>
+<script>
+document.querySelector("#invform").addEventListener("submit",storedata)
+
+//if null in local storage then an empty array
+
+    var investorinfo=JSON.parse(localStorage.getItem("investorsdata"))||[];
+    function storedata(){
+    event.preventDefault();
+    //data to be stored in objects inside array
+    var invobj={
+    invurl:document.querySelector("#url").value,
+    invname:document.querySelector("#name").value,
+    invrole:document.querySelector("#role").value,
+    invclogo:invform.logo.value         //also correct
+};
+investorinfo.push(invobj);
+console.log(investorinfo);
+//storing in local
+localStorage.setItem("investorsdata",JSON.stringify(investorinfo))
+}
+</script>
